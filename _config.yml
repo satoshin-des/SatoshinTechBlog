@@ -23,8 +23,8 @@ email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   ワイが研究だとか，個人開発だとか，業務だとかに際して知った，技術（言語・ライブラリなど）に関する知識を
   覚え書き的に書いていくブログのような何か
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "https://satoshin-des.github.io" # the subpath of your site, e.g. /blog
+url: "/SatoshinTechBlog" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: satoshin_NCD
 github_username:  satoshin-des
 
