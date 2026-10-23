@@ -1,0 +1,68 @@
+---
+layout: post
+title: C++の覚え書き
+date: 2026-10-23
+categories: language cpp
+author: satoshin
+---
+
+# ``std::function``
+
+``std::function``はcallableなオブジェクトを柔軟に格納してくれる便利な奴らしい．``functional``をincludeする必要がある．
+
+```cpp
+#include <iostream>
+#include <cmath>
+#include <functional>
+
+int main()
+{
+    std::function<double(double, int)> zeta = [](double x, int n)
+    {
+        double sum = 0;
+        for (int i = 1; i <= n; ++i)
+        {
+            sum += 1.0 / pow(static_cast<double>(i), x);
+        }
+        return sum;
+    };
+    
+    printf("%f\n", zeta(2, 100));
+    
+    return 0;
+}
+```
+
+```sh
+# 出力結果
+> 1.634984
+```
+
+更に，``[&]``とすると，スコープ内の変数を参照できる．
+
+```cpp
+#include <iostream>
+#include <cmath>
+#include <functional>
+
+int main()
+{
+    double sum = 0;
+    
+    std::function<double(double, int)> zeta = [&](double x, int n)
+    {
+        sum = 0;
+        for (int i = 1; i <= n; ++i)
+        {
+            sum += 1.0 / pow(static_cast<double>(i), x);
+        }
+        return sum;
+    };
+    
+    printf("%f\n", zeta(2, 100));
+    
+    return 0;
+}
+```
+
+この前，ブロック行列を作るときにちょっと利用したが，今後使う機会は恐らくおぼないだろう．
