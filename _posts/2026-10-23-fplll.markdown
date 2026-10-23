@@ -1,0 +1,128 @@
+---
+layout: post
+title: fplllの覚え書き
+date: 2026-10-23
+categories: [library, fplll]
+author: satoshin
+---
+
+# 導入方法
+
+```bash
+$ sudo apt-get install libfplll-dev
+```
+
+ちなみに実行する際は`-lfplll -lmpfr -lgmp`を指定しなければならないらしい
+
+```bash
+$ g++ hoge.cpp -lfplll -lmpfr -lgmp
+```
+
+# `fplll::lll_reduction`
+
+基底行列にLLL簡約を施すという点では，例えばNTLライブラリの`NTL::LLL_FP`なんかと同じだが，NTLのものよりはるかに使い勝手が良い．具体的には，NTLのよりパラメタの設定が良い感じ．
+
+```fplll
+#include <iostream>
+#include <fplll.h>
+
+int main()
+{
+    fplll::ZZ_mat<mpz_t> B(10, 10);
+
+    for (int i = 0; i < 10; ++i)
+    {
+        mpz_set_str(B[i][i].get_data(), "1", 10);
+        mpz_set_str(B[i][0].get_data(), std::to_string(rand()).c_str(), 10);
+    }
+
+    std::cout << B << std::endl;
+    fplll::lll_reduction(B, 0.99, 0.51, fplll::LM_WRAPPER, fplll::FT_DEFAULT, 0, fplll::LLL_VERBOSE);
+    std::cout << B << std::endl;
+
+    return 0;
+}
+```
+
+```console
+# 実行結果
+
+[[1804289383 0 0 0 0 0 0 0 0 0]
+[846930886 1 0 0 0 0 0 0 0 0]
+[1681692777 0 1 0 0 0 0 0 0 0]
+[1714636915 0 0 1 0 0 0 0 0 0]
+[1957747793 0 0 0 1 0 0 0 0 0]
+[424238335 0 0 0 0 1 0 0 0 0]
+[719885386 0 0 0 0 0 1 0 0 0]
+[1649760492 0 0 0 0 0 0 1 0 0]
+[596516649 0 0 0 0 0 0 0 1 0]
+[1189641421 0 0 0 0 0 0 0 0 1]]
+====== Wrapper: calling heuristic<long,double> method ======
+Entering LLL
+delta = 0.99
+eta = 0.51
+precision = 53
+exact_dot_product = 0
+row_expo = 0
+early_red = 0
+siegel_cond = 0
+long_in_babai = 1
+Discovering vector 2/10 cputime=0
+Discovering vector 3/10 cputime=0
+Discovering vector 4/10 cputime=0
+Discovering vector 5/10 cputime=0
+Discovering vector 6/10 cputime=0
+Discovering vector 7/10 cputime=0
+Discovering vector 8/10 cputime=0
+Discovering vector 9/10 cputime=0
+Discovering vector 10/10 cputime=0
+End of LLL: success
+====== Wrapper: end of heuristic method ======
+
+====== Wrapper: calling proved<mpz_t,dpe_t> method (precision=40) ======
+Entering LLL
+delta = 9.9e-1
+eta = 5.1e-1
+precision = 53
+exact_dot_product = 1
+row_expo = 0
+early_red = 0
+siegel_cond = 0
+long_in_babai = 0
+Discovering vector 2/10 cputime=0
+Discovering vector 3/10 cputime=0
+Discovering vector 4/10 cputime=0
+Discovering vector 5/10 cputime=0
+Discovering vector 6/10 cputime=0
+Discovering vector 7/10 cputime=0
+Discovering vector 8/10 cputime=0
+Discovering vector 9/10 cputime=0
+Discovering vector 10/10 cputime=0
+End of LLL: success
+====== Wrapper: end of proved method ======
+
+[[0 0 -1 1 -1 -2 -2 0 -6 2]
+[0 0 3 2 -6 1 1 2 -1 -2]
+[2 0 -6 4 0 3 0 -5 -2 2]
+[3 -3 -1 -6 -2 -4 -1 1 0 4]
+[-6 3 1 0 3 0 4 -2 0 4]
+[3 4 3 1 -1 -4 -1 -2 3 4]
+[-4 -1 -2 0 -1 1 -3 7 2 2]
+[-2 -7 1 -4 -1 -2 -5 -4 0 -4]
+[0 -9 4 -1 3 -4 1 -1 -1 3]
+[-1 -2 -5 0 3 -6 6 0 -2 -3]]
+```
+
+`lll_reduction`の各引数と，そこに入る値は次のようになっている．
+
+|引数|名前|概要|指定可能なもの|
+|:-|:-|:-|:-|:-|
+|第一引数|`b`|基底行列|行列|
+|第二引数|`delta`|Lovász条件のパラメタ|0.25 ～ 1|
+|第三引数|`eta`|サイズ簡約条件のパラメタ|0 ～ √delta|
+|第四引数|`method`|精度と速度の制御|`LM_FAST`, `LM_HEURISTIC`, `LM_PRPVED`, `LM_WRAPPER`|
+|第五引数|`floatType`|浮動小数点のタイプ|`FT_DD`, `FT_DEFAULT`, `FT_DOUBLE`, `FT_DPE`, `FT_LONG_DOUBLE`, `FT_MPFR`, `FP_QD`|
+|第六引数|`precision`|MPFR精度を選んだときのbit精度|0以上|
+|第七引数|`flag`|その他細かい設定||
+
+(参考：[fplll Modules — fpylll 0.6.4 documentation](https://fpylll.readthedocs.io/en/latest/modules.html))
