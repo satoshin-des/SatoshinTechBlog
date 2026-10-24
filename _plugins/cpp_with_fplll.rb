@@ -15,9 +15,9 @@ module Rouge
 
         rule %r/\b(#include|main|for|return|if|else)\b/, Keyword
 
-        rule %r/\b(int|float|double|string|bool|void|char|mpz_t)\b/, Keyword::Type
+        rule %r/\b(int|float|double|string|bool|void|char|mpz_t|ZZ_mat)\b/, Keyword::Type
 
-        rule %r/\b(mpz_set_str)\b/, Name::Builtin
+        rule %r/\b(mpz_set_str|lll_reduction|get_data|to_string|rand|c_str|cout|endl)\b/, Name::Builtin
 
         rule %r/\b(fplll|std)\b/, Name::Class
 
