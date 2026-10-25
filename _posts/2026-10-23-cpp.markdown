@@ -6,7 +6,7 @@ categories: [language, C++]
 author: satoshin
 ---
 
-# ``std::function``
+## ``std::function``
 
 ``std::function``はcallableなオブジェクトを柔軟に格納してくれる便利な奴らしい．``functional``をincludeする必要がある．
 

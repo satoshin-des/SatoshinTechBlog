@@ -6,7 +6,7 @@ categories: [library, fplll]
 author: satoshin
 ---
 
-# 導入方法
+## 導入方法
 
 ```bash
 $ sudo apt-get install libfplll-dev
@@ -18,7 +18,7 @@ $ sudo apt-get install libfplll-dev
 $ g++ hoge.cpp -lfplll -lmpfr -lgmp
 ```
 
-# `fplll::lll_reduction`
+## `fplll::lll_reduction`
 
 基底行列にLLL簡約を施すという点では，例えばNTLライブラリの`NTL::LLL_FP`なんかと同じだが，NTLのものよりはるかに使い勝手が良い．具体的には，NTLのよりパラメタの設定が良い感じ．
 
@@ -127,7 +127,7 @@ End of LLL: success
 
 (参考：[fplll Modules — fpylll 0.6.4 documentation](https://fpylll.readthedocs.io/en/latest/modules.html)，[fplll 4.0](https://xpujol.net/fplll/fplll-doc.html))
 
-# `fplll::bkz_reduction`
+## `fplll::bkz_reduction`
 
 `fplll::BKZParam`型のオブジェクトを作り，BKZ簡約のパラメタを設定して簡約を行う．
 
