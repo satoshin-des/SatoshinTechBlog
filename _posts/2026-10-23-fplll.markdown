@@ -9,13 +9,13 @@ author: satoshin
 ## 導入方法
 
 ```bash
-$ sudo apt-get install libfplll-dev
+sudo apt-get install libfplll-dev
 ```
 
 ちなみに実行する際は`-lfplll -lmpfr -lgmp`を指定しなければならないらしい
 
 ```bash
-$ g++ hoge.cpp -lfplll -lmpfr -lgmp
+g++ hoge.cpp -lfplll -lmpfr -lgmp
 ```
 
 ## `fplll::lll_reduction`
@@ -115,15 +115,64 @@ End of LLL: success
 
 `lll_reduction`の各引数と，そこに入る値は次のようになっている．
 
-|引数|名前|概要|指定可能なもの|
-|:-|:-|:-|:-|:-|
-|第一引数|`b`|基底行列|行列|
-|第二引数|`delta`|Lovász条件のパラメタ|0.25 ～ 1|
-|第三引数|`eta`|サイズ簡約条件のパラメタ|0 ～ √delta|
-|第四引数|`method`|精度と速度の制御|`LM_FAST`, `LM_HEURISTIC`, `LM_PRPVED`, `LM_WRAPPER`|
-|第五引数|`floatType`|浮動小数点のタイプ|`FT_DD`, `FT_DEFAULT`, `FT_DOUBLE`, `FT_DPE`, `FT_LONG_DOUBLE`, `FT_MPFR`, `FP_QD`|
-|第六引数|`precision`|MPFR精度を選んだときのbit精度|0以上|
-|第七引数|`flag`|その他細かい設定|`LLL_VERBOSE`（基底簡約の状況を出力）<br />`LLL_EARLY_RED`（early reductionを有効化）<br />`LLL_SIEGEL`（Lovász条件の代わりにSiegel条件を利用）|
+<div style="overflow-x: auto; white-space: nowrap;">
+<table>
+    <thead>
+    <tr>
+        <td>引数</td>
+        <td>名前</td>
+        <td>概要</td>
+        <td>指定可能なもの</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>第一引数</td>
+        <td><code>b</code></td>
+        <td>基底行列</td>
+        <td>行列</td>
+    </tr>
+    <tr>
+        <td>第二引数</td>
+        <td><code>delta</code></td>
+        <td>Lovász条件のパラメタ</td>
+        <td>0.25 ～ 1</td>
+    </tr>
+    <tr>
+        <td>第三引数</td>
+        <td><code>eta</code></td>
+        <td>サイズ簡約条件のパラメタ</td>
+        <td>0 ～ √delta</td>
+    </tr>
+    <tr>
+        <td>第四引数</td>
+        <td><code>method</code></td>
+        <td>精度と速度の制御</td>
+        <td><code>LM_FAST</code>, <code>LM_HEURISTIC</code>, <code>LM_PRPVED</code>, <code>LM_WRAPPER</code></td>
+    </tr>
+    <tr>
+        <td>第五引数</td>
+        <td><code>floatType</code></td>
+        <td>浮動小数点のタイプ</td>
+        <td><code>FT_DD</code>, <code>FT_DEFAULT</code>, <code>FT_DOUBLE</code>, <code>FT_DPE</code>, <code>FT_LONG_DOUBLE</code>, <code>FT_MPFR</code>, <code>FP_QD</code></td>
+    </tr>
+    <tr>
+        <td>第六引数</td>
+        <td><code>precision</code></td>
+        <td>MPFR精度を選んだときのbit精度</td>
+        <td>0以上</td>
+    </tr>
+    <tr>
+        <td>第七引数</td>
+        <td><code>flag</code></td>
+        <td>その他細かい設定</td>
+        <td><code>LLL_VERBOSE</code>（基底簡約の状況を出力）<br />
+        <code>LLL_EARLY_RED</code>（early reductionを有効化）<br />
+        <code>LLL_SIEGEL</code>（Lovász条件の代わりにSiegel条件を利用）</td>
+    </tr>
+    </tbody>
+</table>
+</div>
 
 (参考：[fplll Modules — fpylll 0.6.4 documentation](https://fpylll.readthedocs.io/en/latest/modules.html)，[fplll 4.0](https://xpujol.net/fplll/fplll-doc.html))
 
@@ -197,24 +246,100 @@ End of BKZ: success
 pruningに利用するstrategiesのjsonファイルは，`apt install`した場合はダウンロードされないことがあるので，その場合は別途ダウンロードする必要がある．
 
 ```bash
-$ curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default.json
+curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default.json
 ```
 
 `BKZParam`のコンストラクタでは次のようにパラメタを指定する．
 
-|引数|名前|概要|指定可能なもの|
-|:-|:-|:-|:-|:-|
-|第一引数|`block_size`|ブロックサイズ||
-|第二引数|`strategies`|strategy|`default.json`を読み込み|
-|第三引数|`delta`|Lovász簡約条件のパラメタ|0.25 ～ 1|
-|第四引数|`flags`|細かい設定|`BKZ_AUTO_ABORT`（早めに停止させる）<br />`BKZ_BOUNDED_LLL`（基底全体ではなく，ブロックにのみLLL簡約を行う）<br />`BKZ_DUMP_GSO`（GSO情報などをjsonファイルに出力する）<br />`BKZ_GH_BND`（ENUMの上界にGaussian heuristicを利用する）<br />`BKZ_MAX_LOOPS`（tourに上限を設定）<br />`BKZ_MAX_TIME`（実行時間に上限を設定）<br />`BKZ_NO_LLL`（簡約の前にLLLを行わない）<br />`BKZ_SD_VARIANT`（自己双対型の簡約を行う）<br />`BKZ_SLD_RED`（スライド簡約を行う）<br />`BKZ_VERBOSE`（基底簡約の状況を表示）|
-|第五引数|`max_loops`|tourの最大回数|0以上の整数|
-|第六引数|`max_time`|強制終了させる秒数|0以上|
-|第七引数|`auto_abort_scale`|強制終了させるためのGSA-slopeの減少度合||
-|第八引数|`auto_abort_max_no_dec`|GSA-slopeが何回連続で改善しなければ停止するか||
-|第九引数|`gh_factor`|enumerationの数え上げ上界のGaussian heuristicに乗ずる係数||
-|第十引数|`min_success_probability`|pruningを利用する場合の成功確率の最小値||
-|第十一引数|`rerandomization_density`|rerandomizationの密度||
+<div style="overflow-x: auto; white-space: nowrap;">
+<table>
+    <thead>
+    <tr>
+        <td>引数</td>
+        <td>名前</td>
+        <td>概要</td>
+        <td>指定可能なもの</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>第一引数</td>
+        <td><code>block_size</code></td>
+        <td>ブロックサイズ</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>第二引数</td>
+        <td><code>strategies</code></td>
+        <td>strategy</td>
+        <td><code>default.json</code>を読み込み</td>
+    </tr>
+    <tr>
+        <td>第三引数</td>
+        <td><code>delta</code></td>
+        <td>Lovász簡約条件のパラメタ</td>
+        <td>0.25 ～ 1</td>
+    </tr>
+    <tr>
+        <td>第四引数</td>
+        <td><code>flags</code></td>
+        <td>細かい設定</td>
+        <td><code>BKZ_AUTO_ABORT</code>（早めに停止させる）<br />
+        <code>BKZ_BOUNDED_LLL</code>（基底全体ではなく，ブロックにのみLLL簡約を行う）<br />
+        <code>BKZ_DUMP_GSO</code>（GSO情報などをjsonファイルに出力する）<br />
+        <code>BKZ_GH_BND</code>（ENUMの上界にGaussian heuristicを利用する）<br />
+        <code>BKZ_MAX_LOOPS</code>（tourに上限を設定）<br />
+        <code>BKZ_MAX_TIME</code>（実行時間に上限を設定）<br />
+        <code>BKZ_NO_LLL</code>（簡約の前にLLLを行わない）<br />
+        <code>BKZ_SD_VARIANT</code>（自己双対型の簡約を行う）<br />
+        <code>BKZ_SLD_RED</code>（スライド簡約を行う）<br />
+        <code>BKZ_VERBOSE</code>（基底簡約の状況を表示）</td>
+    </tr>
+    <tr>
+        <td>第五引数</td>
+        <td><code>max_loops</code></td>
+        <td>tourの最大回数</td>
+        <td>0以上の整数</td>
+    </tr>
+    <tr>
+        <td>第六引数</td>
+        <td><code>max_time</code></td>
+        <td>強制終了させる秒数</td>
+        <td>0以上</td>
+    </tr>
+    <tr>
+        <td>第七引数</td>
+        <td><code>auto_abort_scale</code></td>
+        <td>強制終了させるためのGSA-slopeの減少度合</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>第八引数</td>
+        <td><code>auto_abort_max_no_dec</code></td>
+        <td>GSA-slopeが何回連続で改善しなければ停止するか</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>第九引数</td>
+        <td><code>gh_factor</code></td>
+        <td>enumerationの数え上げ上界のGaussian heuristicに乗ずる係数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>第十引数</td>
+        <td><code>min_success_probability</code></td>
+        <td>pruningを利用する場合の成功確率の最小値</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>第十一引数</td>
+        <td><code>rerandomization_density</code></td>
+        <td>rerandomizationの密度</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+</div>
 
 (参考：[fplll: BKZParam Class Reference](https://fplll.github.io/fplll/classBKZParam.html)，[fplll 4.0](https://xpujol.net/fplll/fplll-doc.html))
 
@@ -245,11 +370,54 @@ $ curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/defau
 
 `bkz_reduction`の各引数と，そこに入る値は次のようになっている．
 
+<div style="overflow-x: auto; white-space: nowrap;">
 |引数|名前|概要|指定可能なもの|
-|:-|:-|:-|:-|:-|
-|第一引数|`B`|基底行列|行列|
-|第二引数|`U`|Unimoduler行列|行列（不要な場合は`NULL`）|
-|第三引数|`param`|`BKZParam`で指定したパラメタ||
-|第四引数|`method`|精度と速度の制御|`LM_FAST`, `LM_HEURISTIC`, `LM_PRPVED`, `LM_WRAPPER`|
-|第五引数|`floatType`|浮動小数点のタイプ|`FT_DD`, `FT_DEFAULT`, `FT_DOUBLE`, `FT_DPE`, `FT_LONG_DOUBLE`, `FT_MPFR`, `FP_QD`|
-|第六引数|`precision`|MPFR精度を選んだときのbit精度|0以上|
+<table>
+    <thead>
+    <tr>
+        <td>引数</td>
+        <td>名前</td>
+        <td>概要</td>
+        <td>指定可能なもの</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>第一引数</td>
+        <td><code>B</code></td>
+        <td>基底行列</td>
+        <td>行列</td>
+    </tr>
+    <tr>
+        <td>第二引数</td>
+        <td><code>U</code></td>
+        <td>Unimoduler行列</td>
+        <td>行列（不要な場合は`NULL`）</td>
+    </tr>
+    <tr>
+        <td>第三引数</td>
+        <td><code>param</code></td>
+        <td><code>BKZParam</code>で指定したパラメタ</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>第四引数</td>
+        <td><code>method</code></td>
+        <td>精度と速度の制御</td>
+        <td><code>LM_FAST</code>, <code>LM_HEURISTIC</code>, <code>LM_PRPVED</code>, <code>LM_WRAPPER</code></td>
+    </tr>
+    <tr>
+        <td>第五引数</td>
+        <td><code>floatType</code></td>
+        <td>浮動小数点のタイプ</td>
+        <td><code>FT_DD</code>, <code>FT_DEFAULT</code>, <code>FT_DOUBLE</code>, <code>FT_DPE</code>, <code>FT_LONG_DOUBLE</code>, <code>FT_MPFR</code>, <code>FP_QD</code></td>
+    </tr>
+    <tr>
+        <td>第六引数</td>
+        <td><code>precision</code></td>
+        <td>MPFR精度を選んだときのbit精度</td>
+        <td>0以上</td>
+    </tr>
+    </tbody>
+</table>
+</div>
