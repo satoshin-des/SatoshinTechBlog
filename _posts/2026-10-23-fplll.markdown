@@ -371,7 +371,6 @@ curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default
 `bkz_reduction`の各引数と，そこに入る値は次のようになっている．
 
 <div style="overflow-x: auto; white-space: nowrap;">
-|引数|名前|概要|指定可能なもの|
 <table>
     <thead>
     <tr>
