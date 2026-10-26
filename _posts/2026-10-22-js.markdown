@@ -124,3 +124,5 @@ console.log(Math.pow(Math.E, val))
 > 15.104412573075518
 3628800.0000000056
 ```
+
+{% include footer.html %}

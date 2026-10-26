@@ -420,3 +420,5 @@ curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default
     </tbody>
 </table>
 </div>
+
+{% include footer.html %}
