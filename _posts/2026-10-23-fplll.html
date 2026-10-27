@@ -6,23 +6,23 @@ categories: [library, fplll]
 author: satoshin
 ---
 
-## 導入方法
+<h2>導入方法</h2>
 
-```bash
+{% highlight bash %}
 sudo apt-get install libfplll-dev
-```
+{% endhighlight %}
 
-ちなみに実行する際は`-lfplll -lmpfr -lgmp`を指定しなければならないらしい
+ちなみに実行する際は-lfplll -lmpfr -lgmpを指定しなければならないらしい
 
-```bash
+{% highlight bash %}
 g++ hoge.cpp -lfplll -lmpfr -lgmp
-```
+{% endhighlight %}
 
-## `fplll::lll_reduction`
+<h2>fplll::lll_reduction</h2>
 
-基底行列にLLL簡約を施すという点では，例えばNTLライブラリの`NTL::LLL_FP`なんかと同じだが，NTLのものよりはるかに使い勝手が良い．具体的には，NTLのよりパラメタの設定が良い感じ．
+基底行列にLLL簡約を施すという点では，例えばNTLライブラリのNTL::LLL_FPなんかと同じだが，NTLのものよりはるかに使い勝手が良い．具体的には，NTLのよりパラメタの設定が良い感じ．
 
-```fplll
+{% highlight fplll %}
 #include <iostream>
 #include <fplll.h>
 
@@ -42,9 +42,9 @@ int main()
 
     return 0;
 }
-```
+{% endhighlight %}
 
-```console
+{% highlight sh %}
 # 実行結果
 
 [[1804289383 0 0 0 0 0 0 0 0 0]
@@ -111,9 +111,9 @@ End of LLL: success
 [-2 -7 1 -4 -1 -2 -5 -4 0 -4]
 [0 -9 4 -1 3 -4 1 -1 -1 3]
 [-1 -2 -5 0 3 -6 6 0 -2 -3]]
-```
+{% endhighlight %}
 
-`lll_reduction`の各引数と，そこに入る値は次のようになっている．
+lll_reductionの各引数と，そこに入る値は次のようになっている．
 
 <div style="overflow-x: auto; white-space: nowrap;">
 <table>
@@ -174,13 +174,13 @@ End of LLL: success
 </table>
 </div>
 
-(参考：[fplll Modules — fpylll 0.6.4 documentation](https://fpylll.readthedocs.io/en/latest/modules.html)，[fplll 4.0](https://xpujol.net/fplll/fplll-doc.html))
+(参考：<a href="https://fpylll.readthedocs.io/en/latest/modules.html">fplll Modules — fpylll 0.6.4 documentation</a>，<a href="https://xpujol.net/fplll/fplll-doc.html">fplll 4.0</a>)
 
-## `fplll::bkz_reduction`
+<h2>fplll::bkz_reduction</h2>
 
-`fplll::BKZParam`型のオブジェクトを作り，BKZ簡約のパラメタを設定して簡約を行う．
+fplll::BKZParam型のオブジェクトを作り，BKZ簡約のパラメタを設定して簡約を行う．
 
-```fplll
+{% highlight fplll %}
 #include <iostream>
 #include <fplll.h>
 
@@ -202,9 +202,9 @@ int main()
 
     return 0;
 }
-```
+{% endhighlight %}
 
-```console
+{% highlight sh %}
 # 出力結果
 
 [[1804289383 0 0 0 0 0 0 0 0 0]
@@ -241,15 +241,15 @@ End of BKZ: success
 [-2 -7 1 -4 -1 -2 -5 -4 0 -4]
 [0 -9 4 -1 3 -4 1 -1 -1 3]
 [-1 -2 -5 0 3 -6 6 0 -2 -3]]
-```
+{% endhighlight %}
 
-pruningに利用するstrategiesのjsonファイルは，`apt install`した場合はダウンロードされないことがあるので，その場合は別途ダウンロードする必要がある．
+pruningに利用するstrategiesのjsonファイルは，apt installした場合はダウンロードされないことがあるので，その場合は別途ダウンロードする必要がある．
 
-```bash
+{% highlight bash %}
 curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default.json
-```
+{% endhighlight %}
 
-`BKZParam`のコンストラクタでは次のようにパラメタを指定する．
+BKZParamのコンストラクタでは次のようにパラメタを指定する．
 
 <div style="overflow-x: auto; white-space: nowrap;">
 <table>
@@ -341,11 +341,11 @@ curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default
 </table>
 </div>
 
-(参考：[fplll: BKZParam Class Reference](https://fplll.github.io/fplll/classBKZParam.html)，[fplll 4.0](https://xpujol.net/fplll/fplll-doc.html))
+(参考：<a href="https://fplll.github.io/fplll/classBKZParam.html">fplll: BKZParam Class Reference</a>，<a href="https://xpujol.net/fplll/fplll-doc.html">fplll 4.0</a>)
 
-`BKZ_DUMP_GSO`を指定した場合，以下のような形で情報が出力される．
+BKZ_DUMP_GSOを指定した場合，以下のような形で情報が出力される．
 
-```json
+{% highlight json %}
 [
         {
                 "step": "Input",
@@ -366,9 +366,9 @@ curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default
                 "norms": [3.9318256, 4.0913991, 4.4230728, 4.2860123, 4.226859, 4.2950808, 4.2825013, 4.3934047, 4.3326729, 4.3640368]
         }
 ]
-```
+{% endhighlight %}
 
-`bkz_reduction`の各引数と，そこに入る値は次のようになっている．
+bkz_reductionの各引数と，そこに入る値は次のようになっている．
 
 <div style="overflow-x: auto; white-space: nowrap;">
 <table>
@@ -391,7 +391,7 @@ curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default
         <td>第二引数</td>
         <td><code>U</code></td>
         <td>Unimoduler行列</td>
-        <td>行列（不要な場合は`NULL`）</td>
+        <td>行列（不要な場合はNULL）</td>
     </tr>
     <tr>
         <td>第三引数</td>

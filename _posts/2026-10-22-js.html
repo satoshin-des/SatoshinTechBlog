@@ -6,11 +6,11 @@ categories: [Language, JavaScript]
 author: satoshin
 ---
 
-## `filter`
+<h2>filter</h2>
 
-`filter`は`true`になった要素のみを返すものらしい．使いこなせたらかなり便利そう．
+filterはtrueになった要素のみを返すものらしい．使いこなせたらかなり便利そう．
 
-```js
+{% highlight js %}
 let a = [];
 for (let i = 0; i < 10; ++i)
 {
@@ -22,18 +22,18 @@ const b = a.filter(x => {
 });
 
 console.log(b);
-```
+{% endhighlight %}
 
-```sh
+{% highlight sh %}
 # 出力結果
 > [ 1, 3, 5, 7, 9 ]
-```
+{% endhighlight %}
 
-## `map`
+<h2>map</h2>
 
-`map`は各要素に対してコールバック函数なるものを実行するらしい．
+mapは各要素に対してコールバック函数なるものを実行するらしい．
 
-```js
+{% highlight js %}
 let a = [];
 let even = [];
 let odd = [];
@@ -55,17 +55,17 @@ a.map(x => {
 
 console.log(odd);
 console.log(even);
-```
+{% endhighlight %}
 
-```sh
+{% highlight sh %}
 # 出力結果
 > [ 1, 3, 5, 7, 9 ]
 [ 0, 2, 4, 6, 8 ]
-```
+{% endhighlight %}
 
-`return`して，各要素に何らかの操作をした配列を返すこともできる．
+returnして，各要素に何らかの操作をした配列を返すこともできる．
 
-```js
+{% highlight js %}
 let a = [];
 for (let i = 0; i < 10; ++i)
 {
@@ -77,9 +77,9 @@ const b = a.map(x => {
 });
 
 console.log(b);
-```
+{% endhighlight %}
 
-```sh
+{% highlight sh %}
 # 出力結果
 > [
   0,
@@ -93,14 +93,14 @@ console.log(b);
   2.8284271247461903,
   3
 ]
-```
+{% endhighlight %}
 
-## `reduce`
+<h2>reduce</h2>
 
-`reduce`もコールバック函数を呼び出すが`map`とは少し違う．`reduce`に入るコールバック函数は，第一引数が**直前のコールバック函数の戻り値**，または**初期値**で，第二引数が**現在の要素**である．
+reduceもコールバック函数を呼び出すがmapとは少し違う．reduceに入るコールバック函数は，第一引数が<b>直前のコールバック函数の戻り値</b>，または<b>初期値</b>で，第二引数が<b>現在の要素</b>である．
 従って，配列の総和とか総積とか，なんかそう言ったことに向いてそうである．
 
-```js
+{% highlight js %}
 let a = [];
 for (let i = 0; i < 10; ++i)
 {
@@ -117,12 +117,12 @@ const val = b.reduce((acc, cur) => {
 
 console.log(val);
 console.log(Math.pow(Math.E, val))
-```
+{% endhighlight %}
 
-```sh
+{% highlight sh %}
 # 出力結果
 > 15.104412573075518
 3628800.0000000056
-```
+{% endhighlight %}
 
 {% include footer.html %}
