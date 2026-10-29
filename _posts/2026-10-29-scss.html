@@ -1,0 +1,29 @@
+---
+layout: post
+title: SCSSの覚え書き
+date: 2026-10-29
+categories: [language, scss]
+author: satoshin
+---
+
+<h2>インストール方法</h2>
+
+<p>
+    gemから簡単にインストールできる．
+</p>
+
+<div class="code-space">
+{% highlight sh %}
+$ gem install sass-embedded
+{% endhighlight %}
+</div>
+
+<p>
+    SCSSからCSSにコンパイルする場合は例えば以下のようにできる．
+</p>
+
+<div class="code-space">
+{% highlight sh %}
+$ sass scss/style.scss css/style.css
+{% endhighlight %}
+</div>
