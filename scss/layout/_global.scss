@@ -60,6 +60,8 @@ p {
     color: white;
     margin-top: 10px;
     margin-bottom: 10px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 table {
