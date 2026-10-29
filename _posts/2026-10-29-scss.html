@@ -27,3 +27,86 @@ $ gem install sass-embedded
 $ sass scss/style.scss css/style.css
 {% endhighlight %}
 </div>
+
+<h2>CSSとの相違点</h2>
+
+<p>CSSでは</p>
+<div class="code-space">
+{% highlight scss %}
+div p {
+    background-color: black;
+}
+
+div > h1 {
+    background-color: red;
+}
+
+div ~ h2 {
+    background-color: blue;
+}
+
+div + h3 {
+    background-color: green;
+}
+
+div:hover {
+    background-color: white;
+}
+
+div::after {
+    content: ';';
+}
+{% endhighlight %}
+</div>
+<p>と書くものは，それぞれ</p>
+<div class="code-space">
+{% highlight scss %}
+div {
+    p {
+        background-color: black;
+    }
+
+    ~h2 {
+        background-color: blue;
+    }
+
+    +h3 {
+        background-color: green;
+    }
+
+    &:hover {
+        background-color: white;
+    }
+
+    &::after {
+        content: ';';
+    }
+}
+{% endhighlight %}
+</div>
+<p>と書ける．</p>
+<p>また，次のような構造を仮定する．</p>
+
+<div class="code-space">
+{% highlight plaintext %}
+scss
+┣━ layout
+┃　　┣━ _header.scss
+┃　　┗━ _footer.scss
+┗━ style.scss
+{% endhighlight %}
+</div>
+
+<p>この場合は，style.scssに</p>
+
+<div class="code-space">
+{% highlight scss %}
+@use 'layout/header';
+@use 'layout/footer';
+{% endhighlight %}
+</div>
+
+<p>
+    と書くことで，_header.scssの内容と_footer.scssの内容をstyle.scssへ押し付けられる．
+    これをコンパイルすることで，cssを作ることができる．
+</p>
