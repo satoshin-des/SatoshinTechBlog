@@ -13,10 +13,56 @@ body {
     padding-right: 5vw;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1 {
+    font-size: 32px;
     color: greenyellow;
     font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 24px;
+    color: greenyellow;
+    font-weight: bold;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+h3 {
+    font-size: 18px;
+    color: greenyellow;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: underline;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    &:link {
+        color: #3f32ca;
+    }
+    &:visited {
+        color: #663399;
+    }
+    &:hover {
+        color: #ff7043;
+    }
+    &:active {
+        color: #26a69a;
+    }
+}
+
+p {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+table {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
