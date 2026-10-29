@@ -1,0 +1,12 @@
+.table {
+    overflow-x: auto;
+    white-space: nowrap;
+
+    tr,
+    td {
+        border-style: solid;
+        border-width: 1px;
+        border-color: white;
+        padding: 10px;
+    }
+}
