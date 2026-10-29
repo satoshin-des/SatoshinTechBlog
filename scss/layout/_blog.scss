@@ -1,0 +1,16 @@
+.category {
+    > li {
+        display: inline-block;
+        margin: 1em;
+    }
+}
+
+.highlight {
+    border-color: rgba(173, 255, 47, 20%);
+    border-width: 2px;
+    border-style: dotted;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}

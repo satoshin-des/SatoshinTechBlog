@@ -1,0 +1,16 @@
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-top-color: greenyellow;
+    border-top-width: 2px;
+    border-top-style: dotted;
+    margin-top: 20px;
+}
+
+.footer-nav {
+    > li {
+        display: inline-block;
+        margin: 1em;
+    }
+}
