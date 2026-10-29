@@ -1,5 +1,5 @@
 .category {
-    > li {
+    >li {
         display: inline-block;
         margin: 1em;
     }
@@ -15,4 +15,7 @@
     padding-bottom: 1vh;
     margin-top: 20px;
     margin-bottom: 20px;
+
+    overflow-x: auto;
+    white-space: nowrap;
 }
