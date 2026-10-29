@@ -10,6 +10,7 @@ author: satoshin
 
 std::functionはcallableなオブジェクトを柔軟に格納してくれる便利な奴らしい．functionalをincludeする必要がある．
 
+<div class="code-space">
 {% highlight cpp %}
 #include <iostream>
 #include <cmath>
@@ -32,14 +33,18 @@ int main()
     return 0;
 }
 {% endhighlight %}
+</div>
 
+<div class="code-space">
 {% highlight sh %}
 # 出力結果
 > 1.634984
 {% endhighlight %}
+</div>
 
 更に，[&]とすると，スコープ内の変数を参照できる．
 
+<div class="code-space">
 {% highlight cpp %}
 #include <iostream>
 #include <cmath>
@@ -64,5 +69,6 @@ int main()
     return 0;
 }
 {% endhighlight %}
+</div>
 
 この前，ブロック行列を作るときにちょっと利用したが，今後使う機会は恐らくおぼないだろう．

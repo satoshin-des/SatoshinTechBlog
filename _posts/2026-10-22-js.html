@@ -10,6 +10,7 @@ author: satoshin
 
 filterはtrueになった要素のみを返すものらしい．使いこなせたらかなり便利そう．
 
+<div class="code-space">
 {% highlight js %}
 let a = [];
 for (let i = 0; i < 10; ++i)
@@ -28,11 +29,13 @@ console.log(b);
 # 出力結果
 > [ 1, 3, 5, 7, 9 ]
 {% endhighlight %}
+</div>
 
 <h2>map</h2>
 
 mapは各要素に対してコールバック函数なるものを実行するらしい．
 
+<div class="code-space">
 {% highlight js %}
 let a = [];
 let even = [];
@@ -56,15 +59,19 @@ a.map(x => {
 console.log(odd);
 console.log(even);
 {% endhighlight %}
+</div>
 
+<div class="code-space">
 {% highlight sh %}
 # 出力結果
 > [ 1, 3, 5, 7, 9 ]
 [ 0, 2, 4, 6, 8 ]
 {% endhighlight %}
+</div>
 
 returnして，各要素に何らかの操作をした配列を返すこともできる．
 
+<div class="code-space">
 {% highlight js %}
 let a = [];
 for (let i = 0; i < 10; ++i)
@@ -78,7 +85,9 @@ const b = a.map(x => {
 
 console.log(b);
 {% endhighlight %}
+</div>
 
+<div class="code-space">
 {% highlight sh %}
 # 出力結果
 > [
@@ -94,12 +103,14 @@ console.log(b);
   3
 ]
 {% endhighlight %}
+</div>
 
 <h2>reduce</h2>
 
 reduceもコールバック函数を呼び出すがmapとは少し違う．reduceに入るコールバック函数は，第一引数が<b>直前のコールバック函数の戻り値</b>，または<b>初期値</b>で，第二引数が<b>現在の要素</b>である．
 従って，配列の総和とか総積とか，なんかそう言ったことに向いてそうである．
 
+<div class="code-space">
 {% highlight js %}
 let a = [];
 for (let i = 0; i < 10; ++i)
@@ -118,9 +129,12 @@ const val = b.reduce((acc, cur) => {
 console.log(val);
 console.log(Math.pow(Math.E, val))
 {% endhighlight %}
+</div>
 
+<div class="code-space">
 {% highlight sh %}
 # 出力結果
 > 15.104412573075518
 3628800.0000000056
 {% endhighlight %}
+</div>
