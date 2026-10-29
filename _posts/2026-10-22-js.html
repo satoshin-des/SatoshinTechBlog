@@ -8,7 +8,9 @@ author: satoshin
 
 <h2>filter</h2>
 
+<p>
 filterはtrueになった要素のみを返すものらしい．使いこなせたらかなり便利そう．
+</p>
 
 <div class="code-space">
 {% highlight js %}
@@ -33,7 +35,9 @@ console.log(b);
 
 <h2>map</h2>
 
+<p>
 mapは各要素に対してコールバック函数なるものを実行するらしい．
+</p>
 
 <div class="code-space">
 {% highlight js %}
@@ -69,7 +73,9 @@ console.log(even);
 {% endhighlight %}
 </div>
 
+<p>
 returnして，各要素に何らかの操作をした配列を返すこともできる．
+</p>
 
 <div class="code-space">
 {% highlight js %}
@@ -107,8 +113,10 @@ console.log(b);
 
 <h2>reduce</h2>
 
+<p>
 reduceもコールバック函数を呼び出すがmapとは少し違う．reduceに入るコールバック函数は，第一引数が<b>直前のコールバック函数の戻り値</b>，または<b>初期値</b>で，第二引数が<b>現在の要素</b>である．
 従って，配列の総和とか総積とか，なんかそう言ったことに向いてそうである．
+</p>
 
 <div class="code-space">
 {% highlight js %}

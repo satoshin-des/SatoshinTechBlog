@@ -14,7 +14,9 @@ sudo apt-get install libfplll-dev
 {% endhighlight %}
 </div>
 
+<p>
 ちなみに実行する際は-lfplll -lmpfr -lgmpを指定しなければならないらしい
+</p>
 
 <div class="code-space">
 {% highlight bash %}
@@ -24,7 +26,9 @@ g++ hoge.cpp -lfplll -lmpfr -lgmp
 
 <h2>fplll::lll_reduction</h2>
 
+<p>
 基底行列にLLL簡約を施すという点では，例えばNTLライブラリのNTL::LLL_FPなんかと同じだが，NTLのものよりはるかに使い勝手が良い．具体的には，NTLのよりパラメタの設定が良い感じ．
+</p>
 
 <div class="code-space">
 {% highlight fplll %}
@@ -121,7 +125,9 @@ End of LLL: success
 {% endhighlight %}
 </mpz_t>
 
+<p>
 lll_reductionの各引数と，そこに入る値は次のようになっている．
+</p>
 
 <div class="table">
 <table>
@@ -182,11 +188,15 @@ lll_reductionの各引数と，そこに入る値は次のようになってい�
 </table>
 </div>
 
+<p>
 (参考：<a href="https://fpylll.readthedocs.io/en/latest/modules.html">fplll Modules — fpylll 0.6.4 documentation</a>，<a href="https://xpujol.net/fplll/fplll-doc.html">fplll 4.0</a>)
+</p>
 
 <h2>fplll::bkz_reduction</h2>
 
+<p>
 fplll::BKZParam型のオブジェクトを作り，BKZ簡約のパラメタを設定して簡約を行う．
+</p>
 
 <div class="code-space">
 {% highlight fplll %}
@@ -255,7 +265,9 @@ End of BKZ: success
 {% endhighlight %}
 </div>
 
+<p>
 pruningに利用するstrategiesのjsonファイルは，apt installした場合はダウンロードされないことがあるので，その場合は別途ダウンロードする必要がある．
+</p>
 
 <div class="code-space">
 {% highlight bash %}
@@ -263,7 +275,9 @@ curl -LO https://raw.githubusercontent.com/fplll/fplll/master/strategies/default
 {% endhighlight %}
 </div>
 
+<p>
 BKZParamのコンストラクタでは次のようにパラメタを指定する．
+</p>
 
 <div class="table">
 <table>
@@ -355,9 +369,13 @@ BKZParamのコンストラクタでは次のようにパラメタを指定する
 </table>
 </div>
 
+<p>
 (参考：<a href="https://fplll.github.io/fplll/classBKZParam.html">fplll: BKZParam Class Reference</a>，<a href="https://xpujol.net/fplll/fplll-doc.html">fplll 4.0</a>)
+</p>
 
+<p>
 BKZ_DUMP_GSOを指定した場合，以下のような形で情報が出力される．
+</p>
 
 <div class="code-space">
 {% highlight json %}
@@ -384,7 +402,9 @@ BKZ_DUMP_GSOを指定した場合，以下のような形で情報が出力さ�
 {% endhighlight %}
 </div>
 
+<p>
 bkz_reductionの各引数と，そこに入る値は次のようになっている．
+</p>
 
 <div class="table">
 <table>
