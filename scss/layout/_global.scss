@@ -6,6 +6,9 @@
 }
 
 body {
+    max-width: 100%;
+    overflow-x: hidden;
+
     background-color: var(--bg-color);
     color: var(--text-color);
 
@@ -45,12 +48,15 @@ a {
     &:link {
         color: #3f32ca;
     }
+
     &:visited {
         color: #663399;
     }
+
     &:hover {
         color: #ff7043;
     }
+
     &:active {
         color: #26a69a;
     }

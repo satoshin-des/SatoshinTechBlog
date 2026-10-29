@@ -1,6 +1,9 @@
 .table {
     overflow-x: auto;
     white-space: nowrap;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 
     tr,
     td {

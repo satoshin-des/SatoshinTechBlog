@@ -5,6 +5,8 @@
 }
 
 body {
+  max-width: 100%;
+  overflow-x: hidden;
   background-color: var(--bg-color);
   color: var(--text-color);
   padding-left: 5vw;
@@ -131,6 +133,9 @@ table {
 .table {
   overflow-x: auto;
   white-space: nowrap;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 .table tr,
 .table td {
