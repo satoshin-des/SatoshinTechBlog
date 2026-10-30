@@ -2,7 +2,7 @@ require 'rouge'
 
 module Rouge
   module Lexers
-    class CppWithFplll < RegexLexer
+    class SageMath < RegexLexer
       title 'Sage'
       desc 'sagemath'
       tag 'sage'
