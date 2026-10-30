@@ -1,0 +1,50 @@
+---
+layout: post
+title: SageMathの覚え書き
+date: 2026-10-30
+categories: [language, sage]
+author: satoshin
+---
+
+<h2>latex</h2>
+
+<p>latex函数を利用することで，TeXの形式で数式を出力することができる．</p>
+
+<div class="code-space">
+{% highlight sage %}
+var("x")
+
+f = (x - 1) * (x - 2) * pi
+f = expand(f)
+
+print(latex(f))
+{% endhighlight %}
+</div>
+
+<div class="code-space">
+{% highlight sh %}
+# 出力結果
+> 2 \, \pi + \pi x^{2} - 3 \, \pi x
+{% endhighlight %}
+</div>
+
+<p>更に，ascii_art函数を利用すれば，アスキーアート風に出力をしてくれる．</p>
+
+<div class="code-space">
+{% highlight sage %}
+var("x")
+
+f = (x - 1) * (x - 2) * pi
+f = expand(f)
+
+print(ascii_art(f))
+{% endhighlight %}
+</div>
+
+<div class="code-space">
+{% highlight sh %}
+# 出力結果
+>    2                
+pi*x  - 3*pi*x + 2*pi
+{% endhighlight %}
+</div>

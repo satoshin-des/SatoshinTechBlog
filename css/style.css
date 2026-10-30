@@ -398,6 +398,9 @@ table {
   padding-bottom: 1vh;
   background-color: black;
 }
+.highlight * {
+  background-color: black;
+}
 
 .code-space {
   background-color: black;
