@@ -1,0 +1,118 @@
+---
+layout: post
+title: TeXの覚え書き
+date: 2026-10-30
+categories: [language, TeX]
+author: satoshin
+---
+
+<h2>algorithmに関する注意</h2>
+
+<p>
+    algorithm環境とalgorithmic環境は，疑似コードをTeXで書く際に非常に便利であるが，labelをつける場合は少し注意が必要である．
+</p>
+
+<div class="code-space">
+{% highlight tex %}
+\begin{algorithm}[t]
+    \caption{FizzBuzz}
+    \label{alg:fizzbuzz}
+    \begin{algorithmic}[1]
+        \Require{$n$}
+        \For{$i = 1$ \textbf{to} $n$}
+            \If{$i \equiv 0 \bmod{15}$}
+                \State print \textit{FizzBuzz} \label{line: print fizzbuzz}
+            \ElsIf{$i \equiv 0 \bmod{3}$}
+                \State print \textit{Fizz} \label{line: print fizz}
+            \ElsIf{$i \equiv 0 \bmod{5}$}
+                \State print \textit{Buzz} \label{line: print buzz}
+            \Else
+                \State print $i$
+            \EndIf
+        \EndFor
+\end{algorithmic}
+\end{algorithm}
+{% endhighlight %}
+</div>
+
+<p>これを出力した場合は，次の様になる</p>
+
+<img src="{{'/images/ScreenShot1.png' | relative_url}}" width="50%" alt="疑似コードのTeXでの見え方" />
+
+<p>これを本文の中で参照した場合は以下のようになる．</p>
+
+<div class="code-space">
+{% highlight tex %}
+アルゴリズム\ref{alg:fizzbuzz}は，
+\ref{line: print fizzbuzz}行目でFizzBuzzを\ref{line: print fizz}でFizzを，
+\ref{line: print buzz}行目でBuzzを出力します．
+{% endhighlight %}
+</div>
+
+<img src="{{'/images/ScreenShot2.png' | relative_url}}" width="50%" alt="本文のTeXでの見え方" />
+
+<p>
+    しかしながら，captionとlabelの順序を変えるとおかしくなる．
+</p>
+
+<div class="code-space">
+{% highlight tex %}
+\begin{algorithm}[t]
+    \label{alg:fizzbuzz}
+    \caption{FizzBuzz}
+    \begin{algorithmic}[1]
+        \Require{$n$}
+        \For{$i = 1$ \textbf{to} $n$}
+            \If{$i \equiv 0 \bmod{15}$}
+                \State print \textit{FizzBuzz} \label{line: print fizzbuzz}
+            \ElsIf{$i \equiv 0 \bmod{3}$}
+                \State print \textit{Fizz} \label{line: print fizz}
+            \ElsIf{$i \equiv 0 \bmod{5}$}
+                \State print \textit{Buzz} \label{line: print buzz}
+            \Else
+                \State print $i$
+            \EndIf
+        \EndFor
+\end{algorithmic}
+\end{algorithm}
+{% endhighlight %}
+</div>
+
+<img src="{{'/images/ScreenShot3.png' | relative_url}}" width="50%" alt="本文のTeXでの見え方" />
+
+<p>
+    アルゴリズムが4.1になっているが，これは章番号である．
+</p>
+
+<p>
+    更に，labelとcaptionをalgorithmic環境の中に入れてしまうとさらに崩れてしまう．
+</p>
+
+<div class="code-space">
+{% highlight tex %}
+\begin{algorithm}[t]
+    \begin{algorithmic}[1]
+        \caption{FizzBuzz}
+        \label{alg:fizzbuzz}
+        \Require{$n$}
+        \For{$i = 1$ \textbf{to} $n$}
+            \If{$i \equiv 0 \bmod{15}$}
+                \State print \textit{FizzBuzz} \label{line: print fizzbuzz}
+            \ElsIf{$i \equiv 0 \bmod{3}$}
+                \State print \textit{Fizz} \label{line: print fizz}
+            \ElsIf{$i \equiv 0 \bmod{5}$}
+                \State print \textit{Buzz} \label{line: print buzz}
+            \Else
+                \State print $i$
+            \EndIf
+        \EndFor
+\end{algorithmic}
+\end{algorithm}
+{% endhighlight %}
+</div>
+
+<img src="{{'/images/ScreenShot4.png' | relative_url}}" width="50%" alt="本文のTeXでの見え方" />
+
+<p>
+    全てがアルゴリズム番号になってしまい，何が何だか分からなくなってしまう．
+</p>
