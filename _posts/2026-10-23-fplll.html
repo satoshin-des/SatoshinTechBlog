@@ -456,3 +456,33 @@ bkz_reductionの各引数と，そこに入る値は次のようになってい�
     </tbody>
 </table>
 </div>
+
+<h2>fplll::RedStatus</h2>
+
+<p>
+    fplllの内部をいじくったりする際にエラーハンドリングをtry-catchですることがしばしば発生するが，fplll内部でのエラーはstd::exceptionではなくfplll::RedStatusで上がってくるので，注意が必要である．
+</p>
+
+<div class="code-space">
+{% highlight fplll %}
+// これでは意味がない
+try
+{
+    clean &= this->hkz(kappa_max, par, std::max(max_row - par.block_size, 0), max_row);
+}
+catch (std::exception &e)
+{
+    recover_gso();
+}
+
+// これならok
+try
+{
+    clean &= this->hkz(kappa_max, par, std::max(max_row - par.block_size, 0), max_row);
+}
+catch (fplll::RedStatus &e)
+{
+    recover_gso();
+}
+{% endhighlight %}
+</div>
