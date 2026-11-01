@@ -1,0 +1,41 @@
+---
+layout: post
+title: Bashの覚え書き
+date: 2026-10-30
+categories: [language, bash]
+author: satoshin
+---
+
+<h2>tee</h2>
+
+<p>標準出力されたものをすべてファイルに書きこむ．</p>
+
+<div class="code-space">
+{% highlight bash %}
+$ echo "hello, world" | tee file.txt
+hello, world
+$ cat file.txt
+hello, world
+{% endhighlight %}
+</div>
+
+<p>しかし，エラーが発生した場合はファイルに何も書き込むことができなくなってしまう．</p>
+
+<div class="code-space">
+{% highlight bash %}
+$ ./does-not_exist.out | tee file.txt
+-bash: ./does-not_exist.out: No such file or directory
+$ cat file.txt
+{% endhighlight %}
+</div>
+
+<p>この場合は2>&1をつけることで解決する．</p>
+
+<div class="code-space">
+{% highlight bash %}
+$ ./does-not_exist.out 2>&1 | tee file.txt
+-bash: ./does-not_exist.out: No such file or directory
+~$ cat file.txt
+-bash: ./does-not_exist.out: No such file or directory
+{% endhighlight %}
+</div>
