@@ -66,10 +66,10 @@ repeat WINX
     y = double(res)
     
     ; 画面座標に変換
-    py = cy - (y * scale)
+    py = cy - y * scale
 
     ; 画面範囲内では線を描画
-    if py >= 0 & py <= winy {
+    if 0 =< py & py <= winy {
         if first {
             pos cnt, py
             first = 0
