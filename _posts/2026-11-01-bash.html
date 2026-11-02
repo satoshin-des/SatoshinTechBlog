@@ -14,6 +14,7 @@ author: satoshin
 {% highlight bash %}
 $ echo "hello, world" | tee file.txt
 hello, world
+
 $ cat file.txt
 hello, world
 {% endhighlight %}
@@ -25,6 +26,7 @@ hello, world
 {% highlight bash %}
 $ ./does-not_exist.out | tee file.txt
 -bash: ./does-not_exist.out: No such file or directory
+
 $ cat file.txt
 {% endhighlight %}
 </div>
@@ -35,7 +37,23 @@ $ cat file.txt
 {% highlight bash %}
 $ ./does-not_exist.out 2>&1 | tee file.txt
 -bash: ./does-not_exist.out: No such file or directory
-~$ cat file.txt
+
+$ cat file.txt
 -bash: ./does-not_exist.out: No such file or directory
+{% endhighlight %}
+</div>
+
+<h2>date</h2>
+
+<p>今の時刻を取得する</p>
+
+<div class="code-space">
+{% highlight bash %}
+$ date
+Mon Nov  2 16:45:39 JST 2026
+
+# 指定の方法で出力することも可能．
+$ date '+今日は%Y年%m月%d日で今の時間は%H時%M分%S秒'
+今日は2026年11月02日で今の時間は16時47分21秒
 {% endhighlight %}
 </div>
