@@ -69,8 +69,8 @@ repeat WINX
     py = cy - (y * scale)
 
     ; 画面範囲内では線を描画
-    if (py >= 0 & py <= winy) {
-        if (first) {
+    if py >= 0 & py <= winy {
+        if first {
             pos cnt, py
             first = 0
         } else {
