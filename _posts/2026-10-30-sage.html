@@ -28,6 +28,21 @@ print(latex(f))
 {% endhighlight %}
 </div>
 
+<p>show函数のなかに入れることで，例えば<a href="https://sagecell.sagemath.org">SageMath Cell</a>などでは綺麗な数式として表示できる．</p>
+
+<div class="code-space">
+{% highlight sage %}
+var("x")
+
+f = (x - 1) * (x - 2) * pi
+f = expand(f)
+
+show(latex(f))
+{% endhighlight %}
+</div>
+
+<img src="{{'/images/ScreenShot5.png' | relative_url}}" width="50%" alt="SageMath Cellでの実行結果" />
+
 <p>更に，ascii_art函数を利用すれば，アスキーアート風に出力をしてくれる．</p>
 
 <div class="code-space">

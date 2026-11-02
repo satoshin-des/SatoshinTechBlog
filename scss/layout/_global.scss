@@ -71,6 +71,13 @@ p {
     margin-bottom: 10px;
     overflow-wrap: anywhere;
     word-break: break-word;
+
+    a {
+        &::before {
+            content: "🔗";
+            color: #a39cf1;
+        }
+    }
 }
 
 table {

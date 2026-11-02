@@ -19,7 +19,7 @@ module Rouge
 
         rule %r/\b(int|float)\b/, Keyword::Type
 
-        rule %r/\b(expand|var|latex|print|ascii_art)\b/, Name::Builtin
+        rule %r/\b(expand|var|latex|print|ascii_art|show)\b/, Name::Builtin
 
         rule %r/\b(mpz_set_str|lll_reduction|get_data|load_strategies_json|bkz_reduction)\b/, Name::Function
 
