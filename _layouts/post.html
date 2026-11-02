@@ -9,11 +9,13 @@
     <p>
         category:
         {% for cat in page.categories %}
-            {{ cat }},
+        {{ cat }},
         {% endfor %}
     </p>
 
-    {{ content }}
+    <main>
+        {{ content }}
+    </main>
 
     {% include footer.html %}
 </body>
