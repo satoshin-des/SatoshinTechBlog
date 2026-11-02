@@ -370,12 +370,10 @@ table {
   border-top-style: dotted;
   margin-top: 20px;
 }
-
 .footer-nav > li {
   display: inline-block;
   margin: 1em;
 }
-
 .footer-logo {
   background-color: white;
   border-radius: 100%;
