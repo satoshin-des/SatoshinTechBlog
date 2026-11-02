@@ -88,3 +88,10 @@ table {
 main {
     flex-grow: 1;
 }
+
+:is(p, h1, h2, h3) {
+    code {
+        background-color: #222;
+        font-family: monospace;
+    }
+}

@@ -1,0 +1,113 @@
+---
+layout: post
+title: HSPの覚え書き
+date: 2026-10-30
+categories: [language, hsp]
+author: satoshin
+---
+
+<h2>HSPの中でJscriptを動かす</h2>
+
+<p>
+    HSPの中でJscriptを動かすには，newcomでCOMオブジェクトを作る必要がある．
+</p>
+
+<div class="code-space">
+{% highlight hsp %}
+newcom sc, "MSScriptControl.ScriptControl"
+sc("Language") = "JScript"
+{% endhighlight %}
+</div>
+
+<h3>応用：文字列を数式として解釈し，グラフを描く</h3>
+
+<p>
+    まずはソースを載せる．
+</p>
+
+<div class="code-space">
+{% highlight hsp %}
+#const WINX 640
+#const WINY 480
+
+screen 0, WINX, WINY
+
+newcom sc, "MSScriptControl.ScriptControl"
+sc("Language") = "JScript"
+
+; 原点と倍率
+cx = WINX / 2.0
+cy = WINY / 2.0
+scale = 40.0
+
+; x軸とy軸を描画
+color 255, 255, 255 : cls
+color 180, 180, 180
+line 0, cy, WINX, cy
+line cx, 0, cx, WINY
+
+; 数式を表す文字列
+expr = "Math.sin(x) * 2 + Math.cos(x * 3)"
+
+; JScriptからの戻り値を受け取るための変数
+comres res
+
+color 255, 0, 0
+first = 1
+repeat WINX
+    ; 数学座標に変換
+    x = double(cnt - cx) / scale
+
+    ; JScriptで変数xへ代入
+    sc->"ExecuteStatement" "var x = " + strf("%f", x) + ";"
+
+    ; 数式をJScript側で評価してyへ代入
+    sc->"Eval" expr
+    y = double(res)
+    
+    ; 画面座標に変換
+    py = cy - (y * scale)
+
+    ; 画面範囲内では線を描画
+    if (py >= 0 & py <= winy) {
+        if (first) {
+            pos cnt, py
+            first = 0
+        } else {
+            line cnt, py
+        }
+    } else {
+        first = 1
+    }
+loop
+
+stop
+{% endhighlight %}
+</div>
+
+<p>
+    <code>comres res</code>とすることにより，JScriptからの結果を受け取るための変数を用意している．
+    これがないといくら計算しても結果が受け取れない．<br />
+    <code>sc->"ExecuteStatement" "var x = " + strf("%f", x) + ";"</code>とすることで，「<code>var x = [値];</code>」をJScriptとして実行する．
+    これにより，変数<code>x</code>が設置される．<br />
+    <code>sc->"Eval" expr</code>とすることで，<code>ExecuteStatement</code>で定義された<code>x</code>を参照し，<code>expr</code>を評価して<code>res</code>へ入れている．
+    これを浮動小数点数として<code>y</code>にいれる．<br />
+    また，HSPでは
+</p>
+
+<div class="code-space">
+{% highlight hsp %}
+pos x1, y1
+line x2, y2
+{% endhighlight %}
+</div>
+
+<p>
+    で(x1, y1)から(x2, y2)へ直線が引けるため，これを利用して曲線っぽく線を描画する．
+</p>
+
+<p>
+    実際に上のコードで実行すると次のようなものが出力される．
+</p>
+
+<img src="{{'/images/ScreenShot6.png' | relative_url}}" width="50%" alt="コンパイル＋実行した結果" />

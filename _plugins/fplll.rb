@@ -12,7 +12,6 @@ module Rouge
         rule %r/\s+/, Text::Whitespace
 
         rule %r/\/\/.*$/, Comment::Single
-
         rule %r/#include\s*[<"][^>"]+[>"]/, Comment::Preproc
 
         rule %r/\b(for|return|if|else|try|catch)\b/, Keyword
