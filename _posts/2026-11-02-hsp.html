@@ -111,3 +111,31 @@ line x2, y2
 </p>
 
 <img src="{{'/images/ScreenShot6.png' | relative_url}}" width="50%" alt="コンパイル＋実行した結果" />
+
+<h2>FPSを表示する</h2>
+
+<p>
+    自分で函数かなんかを作るのも良いが，<code>d3getfps</code>を使うのが簡単
+</p>
+
+<div class="code-space">
+{% highlight hsp %}
+#include "d3m.hsp"
+
+*main
+    redraw 0
+    color 255, 255, 255: boxf
+    pos 0, 0
+    color 0, 0, 0
+    mes strf("%dFPS", d3getfps())
+    redraw 1
+    await 16
+    goto *main
+{% endhighlight %}
+</div>
+
+<p>
+    これを実行すると，多少の誤差はあろうが概ね次のようになる．
+</p>
+
+<img src="{{'/images/ScreenShot7.png' | relative_url}}" width="50%" alt="コンパイル＋実行した結果" />
