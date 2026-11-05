@@ -1,0 +1,54 @@
+---
+layout: post
+title: Liquidの覚え書き
+date: 2026-11-05
+categories: [language, liquid]
+author: satoshin
+---
+
+<h2>contains</h2>
+
+<code>contains</code>を利用することで，例えば文字列のなかに特定の文字列が含まれているかを簡単に判定することができる．
+
+<div class="code-space">
+{% highlight json %}
+{
+  "name": "liquid",
+  "humen": [
+    "Taro Sato",
+    "Miyuki Yamada",
+    "Madoka Sato",
+    "Takuya MIzoguchi"
+  ]
+}
+{% endhighlight %}
+</div>
+
+<div class="code-space">
+{% highlight liquid %}
+{% raw %}
+{% for h in humen %}
+{% if h contains "Sato" %}
+<p>{{h}}</p>
+{% endif %}
+{% endfor %}
+{% endraw %}
+{% endhighlight %}
+</div>
+
+<div class="code-space">
+{% highlight bash %}
+# 実行結果
+
+Output
+
+
+<p>Taro Sato</p>
+
+
+
+
+
+<p>Madoka Sato</p>
+{% endhighlight %}
+</div>
