@@ -8,18 +8,23 @@ title: Home
 
 <h1>記事一覧</h1>
 
+<div class="blocks-parent">
+<div class="blocks">
 <h2>覚え書き</h2>
-
 {% for post in site.posts %}
 {% if post.title contains "覚え書き" %}
 <h2><a href="{{ post.url | relative_url}}">{{ post.title }}</a></h2>
 {% endif %}
 {% endfor %}
+</div>
 
+<div class="blocks">
 <h2>インストールメモ</h2>
-
 {% for post in site.posts %}
 {% if post.title contains "インストールメモ" %}
 <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
 {% endif %}
 {% endfor %}
+</div>
+</div>
+

@@ -96,3 +96,15 @@ main {
         font-family: monospace;
     }
 }
+
+.blocks-parent {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.blocks {
+  width: 30vw;
+  min-width: 100px;
+  display: inline-block;
+}
