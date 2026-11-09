@@ -15,3 +15,11 @@ title: Home
 <h2><a href="{{ post.url | relative_url}}">{{ post.title }}</a></h2>
 {% endif %}
 {% endfor %}
+
+<h2>インストールメモ</h2>
+
+{% for post in site.posts %}
+{% if post.title contains "インストールメモ" %}
+<h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+{% endif %}
+{% endfor %}

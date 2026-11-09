@@ -1,0 +1,38 @@
+---
+layout: post
+title: LazyVimのインストールメモ
+data: 2026-11-09
+categories: [powershell, LazyVim]
+author: satoshin
+---
+
+<h2>Windowsでの方法</h2>
+
+<p>
+  まず，いくつかインストールするものがあるので，それをインストールする．
+</p>
+
+<div class="code-space">
+{% highlight powershell %}
+winget install neovim
+winget install sharkdp.fd
+winget install BurntSushi.ripgrep.MSVC
+{% endhighlight %}
+</div>
+
+<p>
+  その後は，Neiovimのバックアップをしておきます．
+  この際にファイルが存在しない的なエラーを吐く場合があるが，その場合はバックアップするファイルが存在しないということなので，無視で良い．
+</p>
+
+<div class="code-space">
+{% highlight powershell %}
+Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
+Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
+{% endhighlight %}
+</div>
+
+<p>
+  この後にすぐに<code>nvim</code>で起動しようとしたら，私の環境では<code>nvim</code>が認識されなかったので，一度powershellを再起動すると良い．<br />
+  <code>nvim</code>を実行すれば勝手に色々とインストールが進み，インストールが完了する．
+</p>
