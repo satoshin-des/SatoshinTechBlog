@@ -17,17 +17,40 @@
         }
     }
     
-    ul {
-        left: 3em;
-        text-align: left;
-        display: flex;
-        list-style: none;
-        gap: 2em;
-
-        li {
+    .menu {
+        p {
             color: greenyellow;
+            font-style: bold;
+            text-transform: uppercase;
+        }
+
+        .menu-content {
+            display: none;
+            background-color: black;
+            border: 2px dotted greenyellow;
+            position: fixed;
+            z-index: 9;
+            top: 4em;
+            right: 2.5vw;
+            padding: 0.1em 1em 0.3em 1em;
+            border-radius: 1em;
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: -2em;
+                width: 100%;
+                height: 2em;
+            }
+        }
+
+        &:hover {
+            .menu-content {
+                display: block;
+            }
         }
     }
+
 
     .fixed {
         display: flex;

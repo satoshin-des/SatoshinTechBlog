@@ -4,10 +4,16 @@
             <h1><a href="/SatoshinTechBlog/">{{ site.title }}</a></h1>
         </div>
         <div class="fixed-list">
-            <ul>
-                <li>覚え書き</li>
-                <li>インストールメモ</li>
-            </ul>
+            <div class="menu">
+                <p>Newest</p>
+                <div class="menu-content">
+                    <ul>
+                        {% for post in site.posts limit:5 %}
+                        <li><a href="{{ post.url | relative_url}}">{{ post.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <p class="movable">{{ site.description }}</p>

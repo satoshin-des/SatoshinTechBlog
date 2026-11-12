@@ -390,15 +390,31 @@ main {
   color: inherit;
   text-decoration: none;
 }
-.header ul {
-  left: 3em;
-  text-align: left;
-  display: flex;
-  list-style: none;
-  gap: 2em;
-}
-.header ul li {
+.header .menu p {
   color: greenyellow;
+  font-style: bold;
+  text-transform: uppercase;
+}
+.header .menu .menu-content {
+  display: none;
+  background-color: black;
+  border: 2px dotted greenyellow;
+  position: fixed;
+  z-index: 9;
+  top: 4em;
+  right: 2.5vw;
+  padding: 0.1em 1em 0.3em 1em;
+  border-radius: 1em;
+}
+.header .menu .menu-content::before {
+  position: absolute;
+  content: "";
+  top: -2em;
+  width: 100%;
+  height: 2em;
+}
+.header .menu:hover .menu-content {
+  display: block;
 }
 .header .fixed {
   display: flex;
