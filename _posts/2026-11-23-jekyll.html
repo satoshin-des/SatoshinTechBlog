@@ -1,0 +1,55 @@
+---
+layout: post
+title: Jekyllの覚え書き
+date: 2026-11-23
+categories: [jekyll]
+author: satoshin
+---
+
+<h2>サイトの準備方法</h2>
+
+<p>まずは，newをする</p>
+
+<div class="code-space">
+{% highlight bash %}
+$ jekyll new Hoge
+{% endhighlight %}
+</div>
+
+<div class="code-space">
+{% highlight bash %}
+# 実行結果（MSYS2）
+
+Running bundle install in C:/msys64/home/Hoge...
+  Bundler: Fetching gem metadata from https://rubygems.org/...........
+  Bundler: Resolving dependencies...
+  Bundler: Fetching addressable 2.10.0
+  Bundler: Installing addressable 2.10.0
+  Bundler: Bundle complete! 7 Gemfile dependencies, 41 gems now installed.
+  Bundler: Use `bundle info [gemname]` to see where a bundled gem is installed.[DEPRECATED] Platform :mingw, :x64_mingw, :mswin will be removed in the future. Please use platform :windows instead.
+New jekyll site installed in C:/msys64/home/Hohe.
+
+{% endhighlight %}
+</div>
+
+<p>その後は，ymlの中身をカスタマイズする．<br>最初は次のような感じになっているので，適当にカスタマイズすればよい．</p>
+
+<div class="code-space">
+{% highlight yaml %}
+title: Your awesome title
+email: your-email@example.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: jekyllrb
+github_username:  jekyll
+
+theme: minima
+plugins:
+  - jekyll-feed
+
+{% endhighlight %}
+</div>
