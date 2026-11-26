@@ -15,9 +15,9 @@ module Rouge
 
         rule %r/\b(for|return|if|else)\b/, Keyword
 
-        rule %r/\b(int|float)\b/, Keyword::Type
+        rule %r/\b(int|float|Ideal|PolynomialRing|QQ)\b/, Keyword::Type
 
-        rule %r/\b(expand|var|latex|print|ascii_art|show)\b/, Name::Builtin
+        rule %r/\b(expand|var|latex|print|ascii_art|show|groebner_basis)\b/, Name::Builtin
 
         rule %r/\b\d+\b/, Num::Integer
 

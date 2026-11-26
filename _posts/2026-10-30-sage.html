@@ -63,3 +63,25 @@ print(ascii_art(f))
 pi*x  - 3*pi*x + 2*pi
 {% endhighlight %}
 </div>
+
+<h2>groebner_basis</h2>
+
+<p>
+  groebner_basis函数を利用することで，簡単にGroebner基底を求めることができる．
+</p>
+
+<div class="code-space">
+{% highlight sage %}
+R.<x1, x2, x3> = PolynomialRing(QQ, order='lex')
+I = Ideal(x1+x2+x3, x1^3+x2^3+x3^3)
+gb = I.groebner_basis()
+print(gb)
+{% endhighlight %}
+</div>
+
+<div class="code-space">
+{% highlight sh %}
+# 出力結果
+> [x1 + x2 + x3, x2^2*x3 + x2*x3^2]
+{% endhighlight %}
+</div>
